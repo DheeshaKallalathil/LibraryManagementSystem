@@ -16,4 +16,34 @@ public class HomePageSteps {
     public void theUserClicksOnTheButton() {
         homePage.clickAddBookButton();
     }
+
+    @When("the user clicks the Logout button")
+    public void theUserClicksTheLogoutButton() {
+        homePage.clickLogOutButton();
+    }
+
+    @Then("the user is logged out but remains on the home page")
+    public void theUserIsLoggedOutButRemainsOnTheHomePage() {
+        homePage.isBookListDisplayed();
+    }
+
+    @When("the user tries to update a book via the edit button")
+    public void theUserTriesToUpdateABookViaTheEditButton() {
+        homePage.clickEditButton();
+    }
+
+    @Then("the user should receive an error message")
+    public void theUserShouldReceiveAnErrorMessage() {
+        homePage.verifyEditDetailsPage_isnotDisplayed();
+    }
+
+    @When("user clicks on the delete button")
+    public void userClicksOnTheDeleteButton() {
+        homePage.deleteBook();
+    }
+
+    @Then("the book should be removed from the list")
+    public void theBookShouldBeRemovedFromTheList() {
+        homePage.deleteBookAndVerify();
+    }
 }
