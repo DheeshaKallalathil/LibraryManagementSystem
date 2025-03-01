@@ -46,4 +46,9 @@ public class HomePageSteps {
     public void theBookShouldBeRemovedFromTheList() {
         homePage.deleteBookAndVerify();
     }
+
+    @Then("{string} should be displayed in the publication date field")
+    public void shouldBeDisplayedInThePublicationDateField(String InvalidDate) {
+        homePage.verifyInvalidDateMessage(InvalidDate);
+    }
 }

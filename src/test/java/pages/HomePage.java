@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
 import org.junit.jupiter.api.Assertions;
@@ -54,5 +55,14 @@ public class HomePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         boolean isDeleted = wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//td[contains(text(), 'The Very Busy Spider')]")));
         Assertions.assertTrue(isDeleted, "Test Failed: The book was not deleted!");
+    }
+
+    public void verifyInvalidDateMessage(String expectedMessage) {
+        try {
+            WebElement invalidDateCell = driver.findElement(By.xpath("//td[text()='Invalid Date']"));
+            Assertions.assertTrue(invalidDateCell.isDisplayed(), "'Invalid Date' is NOT displayed in the table!");
+        } catch (NoSuchElementException e) {
+            Assertions.fail("'Invalid Date' was NOT found in the table!");
+        }
     }
 }

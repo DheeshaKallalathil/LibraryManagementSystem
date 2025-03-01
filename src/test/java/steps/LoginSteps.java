@@ -23,7 +23,6 @@ public class LoginSteps {
 
     @And("clicks on the login button")
     public void clicks_on_the_login_button() {
-       // driver.findElement(By.xpath("//button[@id='login-button']")).click();
        loginPage.clickLogin();
     }
 

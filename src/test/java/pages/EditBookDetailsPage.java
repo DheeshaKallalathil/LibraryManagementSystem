@@ -26,14 +26,8 @@ public class EditBookDetailsPage {
 
     public void enterNewTitle(String title) {
         WebElement titleField = driver.findElement(By.id("edit-title"));
-
-        // Click on the title field
         titleField.click();
-
-        // Clear the existing text
         titleField.clear();
-
-        // Enter the new title
         titleField.sendKeys(title);
     }
 

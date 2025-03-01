@@ -35,7 +35,8 @@ public class LoginPage {
         Assertions.assertTrue(isDisplayed, "User is NOT on the login page");
     }
 
-    public void enterUsername(String username) {
+    public void enterUsername(String username)
+    {
         driver.findElement(usernameField).sendKeys(username);
     }
 
@@ -48,7 +49,6 @@ public class LoginPage {
 
         driver.findElement(By.xpath("//button[@id='login-button']")).click();
         try {
-            // Check if error message is displayed
             WebElement errorMessage = driver.findElement(By.xpath("//li[contains(text(), 'Invalid username or password. Please try again.')]"));
             if (errorMessage.isDisplayed()) {
                 System.out.println("Invalid username or password. Please try again.");
@@ -62,7 +62,6 @@ public class LoginPage {
 
         driver.findElement(By.xpath("//button[@id='login-button']")).click();
         try {
-            // Check if error message is displayed
             WebElement errorMessage = driver.findElement(By.xpath("//li[contains(text(), 'Invalid username or password. Please try again.')]"));
             if (errorMessage.isDisplayed()) {
                 System.out.println("Invalid username or password. Please try again.");

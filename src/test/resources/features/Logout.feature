@@ -1,7 +1,7 @@
-Feature: Login
+Feature: Logout
 
 
-Scenario Outline: Successful Login
+Scenario Outline: User is logged out
   Given the user is on the Login page
   When the user enters username "<username>" and password "<password>"
   And clicks on the login button

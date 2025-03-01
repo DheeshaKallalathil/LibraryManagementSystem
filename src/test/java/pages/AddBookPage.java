@@ -1,49 +1,46 @@
 package pages;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 import io.qameta.allure.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+
 public class AddBookPage {
     WebDriver driver;
+    TakesScreenshot ts = (TakesScreenshot) driver;
+    File src = ts.getScreenshotAs(OutputType.FILE);
 
     public AddBookPage(WebDriver driver) {
+
         this.driver = driver;
     }
 
     public void verifyUserIsOnAddBookPage() {
-        // Locate the heading element on the Add Book page
         WebElement addBookHeading = driver.findElement(By.id("add-book-heading"));
-        // Verify that the heading is displayed
-        Assertions.assertTrue(addBookHeading.isDisplayed(), "User is NOT on the login page");
+        Assertions.assertTrue(addBookHeading.isDisplayed(), "User is NOT on the correct page");
+        try {
+            Allure.addAttachment("Screenshot", new ByteArrayInputStream(FileUtils.readFileToByteArray(src)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void enterBookDetailsAndSubmit(String title, String author, String genre, String isbn, String publicationDate, String price) {
-        // Enter Title
         WebElement titleField = driver.findElement(By.id("title"));
         titleField.sendKeys(title);
-
-        // Enter Author
         WebElement authorField = driver.findElement(By.id("author"));
         authorField.sendKeys(author);
-
-        // Select Genre from Dropdown
         Select genreDropdown = new Select(driver.findElement(By.id("genre")));
         genreDropdown.selectByVisibleText(genre);
-
-        // Enter ISBN
         WebElement isbnField = driver.findElement(By.id("isbn"));
         isbnField.sendKeys(isbn);
-
-        // Enter Publication Date
         WebElement pubDateField = driver.findElement(By.id("publicationDate"));
         pubDateField.sendKeys(publicationDate);
-
-        // Enter Price
         WebElement priceField = driver.findElement(By.id("price"));
         priceField.sendKeys(price);
 
