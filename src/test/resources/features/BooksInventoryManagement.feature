@@ -49,3 +49,29 @@ Feature: Books Inventory Management
       | admin1   | securePassword  | Harry Potter and the Order of the Phoenix  | J.K. Rowling   | Fiction | 9780743273565 | 2003-07-21 | 10.99 |
       | admin1   | securePassword  | It                                         | Stephen King   | Horror  | 9780743273565 | 2003-07-21 | 10.99 |
 
+    # This test case will fail, as unauthorised users are able to access the books catalog and make changes
+  Scenario Outline: Logged-out users cannot edit books
+    Given the user is on the Login page
+    When the user enters username "<username>" and password "<password>"
+    And clicks on the login button
+    Then the user should be redirected to the home page
+    When the user clicks the Logout button
+    Then the user is logged out but remains on the home page
+    When the user tries to update a book via the edit button
+    Then the user should receive an error message
+
+    Examples:
+      | username | password        |
+      | admin1   | securePassword  |
+
+  Scenario Outline: User can successfully delete a book from book list
+    Given the user is on the Login page
+    When the user enters username "<username>" and password "<password>"
+    And clicks on the login button
+    Then the user should be redirected to the home page
+    When user clicks on the delete button
+    Then the book should be removed from the list
+
+    Examples:
+      | username | password        |
+      | admin1   | securePassword  |

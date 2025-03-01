@@ -20,11 +20,7 @@ public class EditBookDetailsPage {
 
     public void verifyEditDetailsPage_isDisplayed() {
         WebElement heading = driver.findElement(By.xpath("//h2[@class='text-3xl font-bold mb-6']"));
-
-        // Assertion using JUnit 5
         Assertions.assertTrue(heading.isDisplayed(), "Edit book details page is NOT displayed!");
-
-        // Optional: Verify the heading text
         Assertions.assertEquals("Edit book details", heading.getText(), "Heading text does not match!");
     }
 
